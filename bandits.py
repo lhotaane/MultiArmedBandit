@@ -311,7 +311,7 @@ class annealing_softmax_bandit:
         # Mean reward for each arm
         self.k_reward = np.zeros(k)
         # Temperature
-        self.T = 0
+        self.T = 1.2
         # Selection probabilities
         self.probabilities = np.zeros(k)
         # Colling the temperature
@@ -373,15 +373,15 @@ class annealing_softmax_bandit:
         self.reward = np.zeros(iters)
         self.k_reward = np.zeros(k)
         self.probabilities = np.zeros(k)
-        self.T = 0
+        self.T = 1.2
 
     def update_temperature(self):
         t = 1 + self.n
 
         if self.cooling == 'log':
-            self.T = 1/np.log(t+0.0000001)
+            self.T = self.T + 1/np.log(t+0.0000001)
         elif self.coooling == 'abs':
-            self.T = 1/t
+            self.T = self.T+ 1/t
         elif self.cooling == 'random':
             r= np.random.rand(1)
-            self.T = 1/(r+0.0000001)
+            self.T = self.T +1/(r+0.0000001)
