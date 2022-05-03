@@ -284,7 +284,9 @@ class annealing_softmax_bandit:
     =====================================================
     k: number of arms (int)
     iters: number of steps (int)
-    T: temperature 0 <= T (float)
+    T0: initial temperature 0 <= T (float)
+    alpha: cooling parameter 0<alpha (float)
+    n0: cooling parameter (int)
     mu: set the average rewards for each of the k-arms.
         Set to "random" for the means to be selected from
         a normal distribution with mean = 0. 
@@ -296,7 +298,7 @@ class annealing_softmax_bandit:
         values.
     '''
     
-    def __init__(self, k, iters, mu='random',cooling='log'):
+    def __init__(self, k, iters, T0 , alpha, n0, mu='random'):
         # Number of arms
         self.k = k
         # Number of iterations
@@ -311,11 +313,14 @@ class annealing_softmax_bandit:
         # Mean reward for each arm
         self.k_reward = np.zeros(k)
         # Temperature
-        self.T = 1.2
+        self.T0 = T0
+        # Alpha,n0 - cooling strategy parameters
+        self.alpha = alpha
+        self.n0 = n0
         # Selection probabilities
         self.probabilities = np.zeros(k)
-        # Colling the temperature
-        self.cooling = 'log'
+        self.T = 0
+
 
         # Define mean for each arm
         if type(mu) == list or type(mu).__module__ == np.__name__:
@@ -373,15 +378,7 @@ class annealing_softmax_bandit:
         self.reward = np.zeros(iters)
         self.k_reward = np.zeros(k)
         self.probabilities = np.zeros(k)
-        self.T = 1.2
-
+        self.T = 0
+       
     def update_temperature(self):
-        t = 1 + self.n
-
-        if self.cooling == 'log':
-            self.T = self.T + 1/np.log(t+0.0000001)
-        elif self.coooling == 'abs':
-            self.T = self.T+ 1/t
-        elif self.cooling == 'random':
-            r= np.random.rand(1)
-            self.T = self.T +1/(r+0.0000001)
+        self.T = self.T0/(1+(self.n/self.n0)**self.alpha)
