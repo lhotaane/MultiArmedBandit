@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.23)  25 JUN 2022 09:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.23)  9 JUL 2022 17:09
 entering extended mode
 **./HEUR2022_Lhotakova.tex
 (HEUR2022_Lhotakova.tex
@@ -789,7 +789,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--78
  []
 
 [2] [3] [4] [5]
-Overfull \hbox (26.59041pt too wide) in paragraph at lines 135--136
+Overfull \hbox (26.59041pt too wide) in paragraph at lines 143--144
 []\T1/cmr/bx/n/10.95 Ritvik Kharkar\T1/cmr/m/n/10.95 , A.A. [ritvikmath], Multi
 -Armed Ban-dit: Data Sci-ence Con-cepts (2020/09/23),
  []
@@ -797,49 +797,61 @@ Overfull \hbox (26.59041pt too wide) in paragraph at lines 135--136
 [6
 
 ] (HEUR2022_Lhotakova.aux)
-Package rerunfilecheck Info: File `HEUR2022_Lhotakova.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+
+Package rerunfilecheck Warning: File `HEUR2022_Lhotakova.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `HEUR2022_Lhotakova.out':
+(rerunfilecheck)             Before: F6CAD9A79592C379B20F5556E80A8DA2;111
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 18350 strings out of 480257
- 346446 string characters out of 2880021
- 628832 words of memory out of 3000000
- 34485 multiletter control sequences out of 15000+200000
+ 18358 strings out of 480257
+ 346540 string characters out of 2880021
+ 628850 words of memory out of 3000000
+ 34488 multiletter control sequences out of 15000+200000
  560052 words of font info for 105 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 95i,6n,99p,844b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\e
-cbx1200.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
-/dpi600\ecbx1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
-nappen/ec/dpi600\ecti1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\
-fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\uzivatel\AppData\Loca
-l\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\uzivatel\App
-Data\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\uzi
-vatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\
-Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200
-.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600
-\ecrm1728.pk><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/publi
-c/amsfonts/cm/cmex10.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/uzivatel/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/uzivatel/AppData/Loc
-al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/uzivatel/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/User
-s/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.p
-fb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmr10.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/publ
-ic/amsfonts/cm/cmr6.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/
-type1/public/amsfonts/cm/cmr7.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/uzivatel/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/uzivatel/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/uz
-ivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-<C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
-/cmtt8.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb>
-Output written on HEUR2022_Lhotakova.pdf (6 pages, 233808 bytes).
+ 95i,6n,99p,776b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{subsection.0.2} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.0.1} has been referenced but does not ex
+ist, replaced by a fixed one
+
+ <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecb
+x1200.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
+pi600\ecbx1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\ecti1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/lj
+four/jknappen/ec/dpi600\tcrm1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fo
+nts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\uzivatel\AppData\Local\
+MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\uzivatel\AppDa
+ta\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1000.pk> <C:\Users\uziva
+tel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1000.pk> <C:\Us
+ers\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.p
+k> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\e
+crm1728.pk><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmex10.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb><C:/Users/uzivatel/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/uzivatel/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/uzivatel/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/
+uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr10.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public
+/amsfonts/cm/cmr6.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmr7.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/uzivatel/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/uzivatel/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/uziv
+atel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C
+:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/c
+mtt8.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
+sfonts/symbols/msbm10.pfb>
+Output written on HEUR2022_Lhotakova.pdf (6 pages, 236126 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
- 31 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 428 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
+ 29 words of extra memory for PDF output out of 10000 (max. 10000000)
 

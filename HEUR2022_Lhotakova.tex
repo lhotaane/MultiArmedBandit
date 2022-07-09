@@ -108,14 +108,14 @@
 		\end{enumerate}
 	\end{tcolorbox}  
 	The contribution of this method to the improvement of previous startegies lies in periodic update of our decision after $\varepsilon\mathtt{H}$ rounds. But again, in disadvantage, the series of playing the more benefitial lever could be accidentaly interrupted by sporadic good win of the other lever in exploring round.
-	\subsection*{$\varepsilon$-decay strategy******}
-	$\varepsilon$-decay strategy is a special case of so called \textbf{$\varepsilon$-decreasing strategy}, where the $\varepsilon\in(0,1)$ is not fixed , but it is a decreasing series of $(\varepsilon_i)_{i=1}^m$, where $\varepsilon_1>\varepsilon_2>\dots>\varepsilon_m$. In the $\varepsilon$-decay strategy, the lever of highest estimated mean is always pulled except when the least-taken lever is pulled with a probability of $\frac{4}{4+\beta t}$, where $t$ is the number of times the least-taken lever has already been pulled.
+	\subsection*{$\varepsilon$-decay strategy}
+	$\varepsilon$-decay (also known as $\varepsilon$-decreasing) strategy is a strategy, where the $\varepsilon\in(0,1)$ is not fixed, but it is a decreasing series of $(\varepsilon_i)_{i=1}^m$, where $\varepsilon_1>\varepsilon_2>\dots>\varepsilon_m$. In the $\varepsilon$-decay strategy, the random lever is pulled with a probability of $\frac{1}{1+\beta t}$, where $t$ is the number of rounds played, otherwise lever with highest mean reward is pulled.
 	\begin{tcolorbox}[colframe=white]
-		LeastTaken strategy
+		$\varepsilon$-decay strategy
 		\begin{enumerate}
 			\item randomly selected one of the levers,
-			\item exploited for $\varepsilon_i\mathtt{H}$ rounds and calculated mean reward $\tilde{r}$ after $\varepsilon_i\mathtt{H}$ rounds,
-			\item in $(\varepsilon_i\mathtt{H}+1)$ the same lever is played with proability of $\frac{4}{4+m^2}$, 
+			\item exploit for $\varepsilon_i\mathtt{H}$ rounds and calculated mean reward $\tilde{r}$ after $\varepsilon_i\mathtt{H}$ rounds,
+			\item in $(\varepsilon_i\mathtt{H}+1)$ round is selected random lever with probability of $\frac{1}{1+\beta t}$, otherwise lever with the highest mean reward is pulled,
 			\item set $\varepsilon_i$ as new $\varepsilon_{i+1}$ ($\varepsilon_i>\varepsilon_{i+1}$) and return to point 2.,
 			\item the game ends after $\mathtt{H}$ rounds are played.
 		\end{enumerate}
@@ -125,10 +125,18 @@
 	The SoftMax strategy consists of a random choice according to a Gibbs distribution. The lever $k$ is chosen with probability 
 	$$p_k =\frac{\e^{\frac{\hat{\mu}_k}{\tau}}}{\sum_{i=1}^{n}\e^{\frac{\hat{\mu}_i}{\tau}}},$$
 	where $\hat{\mu}_i$ is the estimated mean of the rewards brought by the lever $i$ and $\tau\in\R^+$ is a parameter called the temperature. The choice of $\tau$’s value is left to the user. More generally, all methods that choose levers according to a probability distribution reflecting how likely the levers are to be optimal, are called probability matching methods.
-	\subsection*{Interval Estimation strategy}
-	A totally different approach to the exploration problem is to attribute to each lever an “optimistic reward estimate” within a certain confidence interval and to greedily choose the lever with the highest optimistic mean. Unobserved or infrequently observed levers will have an over-valued reward mean that will lead to further exploration of those levers. The more a lever is pulled and the closer its optimistic reward estimate will be to the true reward mean. This approach called Interval Estimation. To each lever is associated the $100\cdot(1-\alpha)$\% reward mean upper bound where $\alpha\in(0,1)$ is a parameter whose exact value is left to the user. At each round, the lever of highest reward mean upper bound is chosen. Note that smaller $\alpha$ values lead to more exploration.
+	\subsubsection*{SoftMax strategy using FSA}
+	As an upgrade for SoftMax strategy could help Fast Simulated Annealing, where the temperature $\tau$ is not set as a constant, but as a function defined as $$\tau(t) = \frac{T_0}{1+(\frac{t}{n_0})^\alpha},$$ where $T_0$ is an initial temperature and $\alpha, n_0$ are cooling parameters.	
 	
+
+\section*{Results based on heuristics}
+Before the results, lets focus at theory (based on the lectures [5]).
+
+	\subsection*{Grid Search}
 	
+	\subsection*{Genetic Optimization}
+
+
 	\clearpage
 	\section*{References}
 	\begin{enumerate}
@@ -136,6 +144,7 @@
 		\item[2.] \textbf{Robert C. Gray}, A.A. [Academic Gamer], Multi-Armed Bandits: A Cartoon Introduction - DCBA \#1 (2020/08/08), YouTube, \\https://www.youtube.com/watch?v=bkw6hWvh\_3k\&ab\_channel=AcademicGamer
 		\item[3.] \textbf{Aleksandrs Slivkins}, Introduction to Multi-Armed Bandits, Microsoft Research NYC, Version September 2019, 2017-2019
 		\item[4.] \textbf{João Gama, Rui Camacho, Pavel B. Brazdil, Alípio Mário Jorge, Luís Torgo}, Machine Learning: ECML 2005, 16th European Conference on Machine Learning, Proceedings, Porto, Portugal, October 3-7, 2005, 0302-9743
+		\item[5.] HEUR Lectures, 2022
 	\end{enumerate}
 	
 \end{document}
