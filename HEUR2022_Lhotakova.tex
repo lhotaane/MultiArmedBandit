@@ -1,0 +1,141 @@
+\documentclass[11pt,american,czech]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=4cm,bmargin=3cm,lmargin=3cm,rmargin=2cm,headheight=0.8cm,headsep=1cm,footskip=0.5cm}
+\pagestyle{headings}
+\setcounter{secnumdepth}{3}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{tcolorbox}
+\usepackage{bm}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage{subcaption}
+
+
+%commands
+\newcommand{\e}{\mathtt{e}} %e
+\newcommand{\dx}{\mathtt{d}} %d
+\newcommand{\R}{\mathbb{R}} % množina reálných čísel
+\newcommand{\N}{\mathbb{N}} % množina přirozených čísel
+\newcommand{\E}{\mathbb{E}} % střední hodnota
+\newcommand{\VAR}{\mathtt{VAR}} % rozptyl
+\newcommand{\Mod}{\mathtt{Mod}} % rozptyl
+\newcommand{\amb}{\mathtt{amb}}
+\newcommand{\T}{\mathtt{T}} %T rounds played
+\newcommand{\supp}{\mathrm{supp}} %supremum
+
+\usepackage{indentfirst}
+
+\begin{document}
+	\title{Multi-armed bandit problem}
+	\author{Anežka Lhotáková}
+	\date{\today}
+	\maketitle
+	\begin{abstract}
+		In probability theory and machine learning, multi-armed bandit problem refers to a model which can be seen as a set of real distributions $\{F_1,\dots,F_K\}$, each distribution being associated with the rewards delivered by one of the $K\in\N^+$ levers. Let $\mu_1,\dots,\mu_K$ be the mean values associated with these reward distributions. The gambler iteratively plays one lever per round and observes the associated reward. The objective is to maximize the sum of the collected rewards. Several strategies or algorithms have been proposed as a solution to this problem in the last two decades. In this project, we will focus on the most popular strategies and theirs parameter optimization through heuristicall approach.
+	\end{abstract}
+	\section*{Introduction}
+	In this paper, model with i.i.d. (independent and identically distributed) rewards is presented. We define
+	\begin{itemize}
+		\item horizon $\mathtt{H}$ as the number of rounds to be played,
+		\item maximum mean reward as $\mu^* = \mathtt{max}\{\mu_1,\mu_2,\dots,\mu_K\},$
+		\item regret $\rho$ after $\T$ rounds played as
+		$$\rho(\T) = \T\mu^* - \sum_{t=1}^{\T}r_t,$$
+		where $r_t$ is the reward in round $t$ ($\rho$ is also a random variable),
+		\item expected regret as $\mathbb{E}[\rho(\T)]$,
+		\item symbol $\ell_t^i, (i=1,\dots,K$ and $ t=1,\dots,\mathtt{H})$ for the levers.
+	\end{itemize}
+	The protocol to the model is following:
+	\begin{tcolorbox}[colframe=white]
+		Given $\mathtt{H}$ rounds to play, considering $K$ levers, in each round $t=1,\dots,\mathtt{H}$:
+		\begin{enumerate}
+			\item Based on the strategy, the algorithm picks a lever $\ell_t^i$, $i=1,\dots,K$.
+			\item Algorithm observes reward $r_t$ for the chosen lever.
+			\item If $t<\mathtt{H}$, the algorithm will play again (point 1., $t\to t+1$), otherwise the game is over.
+		\end{enumerate}
+	\end{tcolorbox}
+	The goal is to maximize the total reward over the T rounds. Above that, we make two important assumptions:
+	\begin{itemize}
+		\item The algorithm observes only the reward for the selected action, and nothing else.
+		\item The reward for each action is  i.i.d. For each lever $\ell^i$, there is a distribution $F_{i}$ over reals, called the reward distribution. Every time the lever is chosen, the reward is sampled independently from its distribution. The reward distributions are initially unknown to the algorithm.
+	\end{itemize}
+	For better understanding of the model, let us begin with an example. Imagine player walking into a casino with two slot-machines. Both slot-machines $\ell_1,\ell_2$ have their already given distributions $F_1, F_2$. Let the reward $r$ of each slot-machine be given as $r_1\sim F_1=\mathcal{N}(10,3)$ and $r_2\sim F_2=\mathcal{N}(8,4)$. Unfortunately, this information is hidden from the player. What possible strategies can the player use in order to maximize his win over $\mathtt{H}=100$ rounds? The mean optimal win is $$r_O =\mathtt{H}\cdot \mu^* = \mathtt{H}\cdot \max\{\mu_1,\mu_2\} = 100\cdot10=1~000.$$
+	
+	a) \textit{Explore only}: Firstly, he could choose to pull the levers randomly for the whole 100 rounds. In that case, his mean reward after 100 games would be $$r = 50\cdot 10 + 50\cdot 8 = 900,$$ meaning expected regret  is equal to $\mathbb{E}[\rho] = 1~000-900=100$.\\
+	
+	b) \textit{Exploit only}: Second strategy could be based on first experience. One round on each slot-machine could be played and explored. In first round, player pulls lever $\ell_A$ and gets a reward of $9$. Then, pulling the second lever $\ell_B$ and winning $11 $. Naturally, for the remaining 98 rounds reasonable player would decide to keep playing (exploit) with the "better" lever $\ell_B$. This strategy might have two possible outcomes
+	\begin{itemize}
+		\item positive outcome: the lever $\ell_B$ is the machine $\ell_1$ with $r_1\sim\mathcal{N}(10,3)$ and thus the mean reward would be $r=\frac{9+11}{2}+10\cdot98=990\$$,
+		\item negative outcome: the lever $\ell_B$ is the less beneficial lever $\ell_2$ with $r_2\sim\mathcal{N}(8,4)$ giving mean reward $r = \frac{9+11}{2}+8\cdot98=794\$$.
+	\end{itemize}
+	Since the player does not know whether the decision of choosing $\ell_B$ was correct or not, expected regret of this strategy would be $\mathbb{E}[\rho]=1~000 - [\frac{9+11}{2} + 0.5\cdot(98\cdot10 + 98\cdot8)] =1~000 - 892=108$.\\
+	
+	Explore-only strategy gave the player expected regret of $100$, which is lower than exploit-only strategy with expected regret $108$. However, we can see how sensitive the problem is. What if the player got lucky and in exploitation part chose the more winning machine? This dilemma is called \textit{Exploration-Exploitation dilemma} and even thought it is not the subject of this project, it is closely related to multi-armed bandit problem. It will come as no surprise that finding the balance between explore-exploit approaches is the key part of the most popular strategies for solving multi-armed bandit problem.
+	\newpage
+	\section*{Strategies}
+	In the example above were mentioned two basic strategies - \textbf{Exploration} and \textbf{Exploitation strategy}. In this section, some of the other strategies or solutions to multi-armed bandit problem are presented.
+	\subsection*{$\varepsilon$-first strategy}
+	$\varepsilon$-first strategy extends the exploring part in exploitation strategy, which in general increases chances for choosing the more benefitial lever. Let $\varepsilon\in(0,1)$. 
+	\begin{tcolorbox}[colframe=white]
+		The idea of $\varepsilon$-first strategy is to
+		\begin{enumerate}
+			\item explore (randomly choose levers) over the first $\varepsilon\mathtt{H}$ rounds,
+			\item observe mean reward for each lever after first $\varepsilon\mathtt{H}$ rounds played,
+			\item choose lever with higher mean reward,
+			\item exploit the chosen lever for the remaining $(1-\varepsilon)\mathtt{H}$ rounds.
+		\end{enumerate}
+	\end{tcolorbox}
+	The advantage of this method is without a doubt extended exploration part, which provides more clues about the hidden distributions $F_{i}$ of each lever. On the other hand, since we know so little about the distributions of each lever, we can not with certainty determine the optimal range of exploration part. Setting the value of $\varepsilon$ so we do not perform unnecessary exploration rounds on the expenses of exploitation rounds and the other way around is a difficult task to do and strongly depends on the distributions.
+	\subsection*{$\varepsilon$-greedy strategy}
+	Another way to upgrade exploration/exploitation strategy is to use $\varepsilon\in(0,1)$ as a threshold for re-decision. In $\varepsilon$-greedy strategy we continuously monitor our decision during the whole game. Firstly, lever is randomly chosen to be played for the first $\varepsilon\mathtt{H}$ rounds. In $(\varepsilon\mathtt{H}+1)$ round the other lever is played. At this point, re-decision is made. If the reward obtained from other lever is lower than mean reward obtained during $\varepsilon\mathtt{H}$ rounds, player continues to play with the same lever as in the $\varepsilon\mathtt{H}$ rounds. In the opposite case, player randomly choose which lever is to be played in the following $\varepsilon\mathtt{H}$ rounds.
+	\begin{tcolorbox}[colframe=white]
+		In $\varepsilon$-greedy strategy is
+		\begin{enumerate}
+			\item randomly selected one of the levers,
+			\item exploited for $\varepsilon\mathtt{H}$ rounds and calculated mean reward $\tilde{r}$ after $\varepsilon\mathtt{H}$ rounds,
+			\item in $(\varepsilon\mathtt{H}+1)$ round explored the second lever, obtaining levers reward $r$,
+			\begin{itemize}
+				\item if $\tilde{r}\geq r\to$ keep same lever as in exploitation $\to$ 2.,
+				\item if $\tilde{r}< r\to$ randomly select new lever $\to$ 2. with new chosen lever,
+			\end{itemize}
+			\item the game ends after $\mathtt{H}$ rounds are played.
+		\end{enumerate}
+	\end{tcolorbox}  
+	The contribution of this method to the improvement of previous startegies lies in periodic update of our decision after $\varepsilon\mathtt{H}$ rounds. But again, in disadvantage, the series of playing the more benefitial lever could be accidentaly interrupted by sporadic good win of the other lever in exploring round.
+	\subsection*{$\varepsilon$-decay strategy******}
+	$\varepsilon$-decay strategy is a special case of so called \textbf{$\varepsilon$-decreasing strategy}, where the $\varepsilon\in(0,1)$ is not fixed , but it is a decreasing series of $(\varepsilon_i)_{i=1}^m$, where $\varepsilon_1>\varepsilon_2>\dots>\varepsilon_m$. In the $\varepsilon$-decay strategy, the lever of highest estimated mean is always pulled except when the least-taken lever is pulled with a probability of $\frac{4}{4+\beta t}$, where $t$ is the number of times the least-taken lever has already been pulled.
+	\begin{tcolorbox}[colframe=white]
+		LeastTaken strategy
+		\begin{enumerate}
+			\item randomly selected one of the levers,
+			\item exploited for $\varepsilon_i\mathtt{H}$ rounds and calculated mean reward $\tilde{r}$ after $\varepsilon_i\mathtt{H}$ rounds,
+			\item in $(\varepsilon_i\mathtt{H}+1)$ the same lever is played with proability of $\frac{4}{4+m^2}$, 
+			\item set $\varepsilon_i$ as new $\varepsilon_{i+1}$ ($\varepsilon_i>\varepsilon_{i+1}$) and return to point 2.,
+			\item the game ends after $\mathtt{H}$ rounds are played.
+		\end{enumerate}
+	\end{tcolorbox}
+	This method could be again upgraded by using more specific probability distribution for pulling the lever. Exaple of such method is SoftMax strategy: 
+	\subsection*{SoftMax strategy}
+	The SoftMax strategy consists of a random choice according to a Gibbs distribution. The lever $k$ is chosen with probability 
+	$$p_k =\frac{\e^{\frac{\hat{\mu}_k}{\tau}}}{\sum_{i=1}^{n}\e^{\frac{\hat{\mu}_i}{\tau}}},$$
+	where $\hat{\mu}_i$ is the estimated mean of the rewards brought by the lever $i$ and $\tau\in\R^+$ is a parameter called the temperature. The choice of $\tau$’s value is left to the user. More generally, all methods that choose levers according to a probability distribution reflecting how likely the levers are to be optimal, are called probability matching methods.
+	\subsection*{Interval Estimation strategy}
+	A totally different approach to the exploration problem is to attribute to each lever an “optimistic reward estimate” within a certain confidence interval and to greedily choose the lever with the highest optimistic mean. Unobserved or infrequently observed levers will have an over-valued reward mean that will lead to further exploration of those levers. The more a lever is pulled and the closer its optimistic reward estimate will be to the true reward mean. This approach called Interval Estimation. To each lever is associated the $100\cdot(1-\alpha)$\% reward mean upper bound where $\alpha\in(0,1)$ is a parameter whose exact value is left to the user. At each round, the lever of highest reward mean upper bound is chosen. Note that smaller $\alpha$ values lead to more exploration.
+	
+	
+	\clearpage
+	\section*{References}
+	\begin{enumerate}
+		\item[1.] \textbf{Ritvik Kharkar}, A.A. [ritvikmath], Multi-Armed Bandit: Data Science Concepts (2020/09/23), YouTube, https://www.youtube.com/watch?v=e3L4VocZnnQ\&ab\_channel=ritvikmath
+		\item[2.] \textbf{Robert C. Gray}, A.A. [Academic Gamer], Multi-Armed Bandits: A Cartoon Introduction - DCBA \#1 (2020/08/08), YouTube, \\https://www.youtube.com/watch?v=bkw6hWvh\_3k\&ab\_channel=AcademicGamer
+		\item[3.] \textbf{Aleksandrs Slivkins}, Introduction to Multi-Armed Bandits, Microsoft Research NYC, Version September 2019, 2017-2019
+		\item[4.] \textbf{João Gama, Rui Camacho, Pavel B. Brazdil, Alípio Mário Jorge, Luís Torgo}, Machine Learning: ECML 2005, 16th European Conference on Machine Learning, Proceedings, Porto, Portugal, October 3-7, 2005, 0302-9743
+	\end{enumerate}
+	
+\end{document}
