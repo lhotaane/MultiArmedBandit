@@ -130,11 +130,54 @@
 	
 
 \section*{Results based on heuristics}
-Before the results, lets focus at theory (based on the lectures [5]).
+Before the results, lets focus on the theory (based on the lectures [5]).
 
 	\subsection*{Grid Search}
+	The Grid Search has been the traditional way of hyperparameter optimization. It is a very simple exhaustive searching through a manually specified subset of the hyperparameter space of a learning algorithm. A grid search algorithm must be guided by some performance metric. In this research, our metric will be the mean reward after $1~000$ games. 
 	
-	\subsection*{Genetic Optimization}
+	\subsection*{Best bandits based on Grid Search}
+
+In this text, the goal is to determine the best multi armed bandit strategy among mentioned strategies. In the game, following rules are defined:
+\begin{itemize}
+	\item the number of rounds to be played $\mathtt{H}=1~000$,
+	\item the number of bandits: 10,
+	\item the distributions of rewards for each bandit:
+		\subitem $r_0\sim N(0,1)$,
+		\subitem $r_1\sim N(1,1)$,
+		\subitem $\cdots$,
+		\subitem $r_9\sim N(9,1)$.
+\end{itemize}
+This game will be repeated $1~000$ times and the average final reward over these thousand games will be observed. As the distributions are now revealed, it is clear we except the algorithms will eventually discover the last lever with $r_9$ is the most generous one.
+
+\subsubsection*{The best $\varepsilon$-first strategy}
+Based on the definition, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = $ the best option with the respect to the setting of the game and experiment.
+
+\begin{figure}[h]
+	\includegraphics[scale=0.6]{e_fisrt.png}
+\end{figure}
+
+\subsubsection*{The best $\varepsilon$-greedy strategy}
+Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes and now it defines a points in the game, where the decision might be switched. In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = 0.09$ the best option with the respect to the setting of the game and experiment.
+
+\subsubsection*{The best $\varepsilon$-decay strategy}
+Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes and now it defines a points in the game, where the decision might be switched. In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = 0.09$ the best option with the respect to the setting of the game and experiment.
+
+\subsubsection*{The best SoftMax strategy}
+Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes and now it defines a points in the game, where the decision might be switched. In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = 0.09$ the best option with the respect to the setting of the game and experiment.
+
+\subsection*{GA}
+Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on biologically inspired operators such as mutation, crossover and selection. In the following picture, which I stole from our lectures [7.], is described the idea behind GA:
+
+\begin{figure}[h]
+\includegraphics[scale=0.45]{go_overview.png}
+\caption{The genetic optimization.}
+\end{figure}
+
+As Grid Search was just fine for the $\varepsilon$-based strategies, the SoftMax strategy offers an opportunity to test Genetic Algorithms. The geneticalgorithm library offers an implementation of GA, the documentation can be found here: https://github.com/rmsolgi/geneticalgorithm .
+
+
+
+
 
 
 	\clearpage
@@ -145,6 +188,7 @@ Before the results, lets focus at theory (based on the lectures [5]).
 		\item[3.] \textbf{Aleksandrs Slivkins}, Introduction to Multi-Armed Bandits, Microsoft Research NYC, Version September 2019, 2017-2019
 		\item[4.] \textbf{João Gama, Rui Camacho, Pavel B. Brazdil, Alípio Mário Jorge, Luís Torgo}, Machine Learning: ECML 2005, 16th European Conference on Machine Learning, Proceedings, Porto, Portugal, October 3-7, 2005, 0302-9743
 		\item[5.] HEUR Lectures, 2022
+		\item[6.] https://en.wikipedia.org/wiki/Hyperparameter\_optimization
 	\end{enumerate}
 	
 \end{document}

@@ -63,7 +63,7 @@ class eps_first_bandit:
             # Randomly select an action with probability eps for the first eps*horizon rounds
             a = np.random.choice(self.k)
         else:
-            # Take greedy action with probability 1-eps for the rest of the game
+            # Take greedy action for the rest of the game
             a = np.argmax(self.k_reward)
             
         reward = np.random.normal(self.mu[a], 1)
