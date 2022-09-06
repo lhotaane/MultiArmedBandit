@@ -412,7 +412,7 @@ class annealing_softmax_bandit:
         self.n0 = n0
         # Selection probabilities
         self.probabilities = np.zeros(k)
-        self.T = 0
+        self.T = 0.1
 
 
         # Define mean for each arm
@@ -471,7 +471,7 @@ class annealing_softmax_bandit:
         self.reward = np.zeros(iters)
         self.k_reward = np.zeros(k)
         self.probabilities = np.zeros(k)
-        self.T = 0
+        self.T = 0.1
        
     def update_temperature(self):
         self.T = self.T0/(1+(self.n/self.n0)**self.alpha)

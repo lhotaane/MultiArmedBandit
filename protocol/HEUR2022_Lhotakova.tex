@@ -38,7 +38,7 @@
 	\date{\today}
 	\maketitle
 	\begin{abstract}
-		In probability theory and machine learning, multi-armed bandit problem refers to a model which can be seen as a set of real distributions $\{F_1,\dots,F_K\}$, each distribution being associated with the rewards delivered by one of the $K\in\N^+$ levers. Let $\mu_1,\dots,\mu_K$ be the mean values associated with these reward distributions. The gambler iteratively plays one lever per round and observes the associated reward. The objective is to maximize the sum of the collected rewards. Several strategies or algorithms have been proposed as a solution to this problem in the last two decades. In this project, we will focus on the most popular strategies and theirs parameter optimization through heuristicall approach.
+		In probability theory and machine learning, multi-armed bandit problem refers to a model which can be seen as a set of real distributions $\{F_1,\dots,F_K\}$, each distribution being associated with the rewards delivered by one of the $K\in\N^+$ levers. Let $\mu_1,\dots,\mu_K$ be the mean values associated with these reward distributions. The gambler iteratively plays one lever per round and observes the associated reward. The objective is to maximize the sum of the collected rewards. Several strategies or algorithms have been proposed as a solution to this problem in the last two decades. In this project, we will focus on the most popular strategies and their parameter optimization through heuristic approach.
 	\end{abstract}
 	\section*{Introduction}
 	In this paper, model with i.i.d. (independent and identically distributed) rewards is presented. We define
@@ -60,14 +60,14 @@
 			\item If $t<\mathtt{H}$, the algorithm will play again (point 1., $t\to t+1$), otherwise the game is over.
 		\end{enumerate}
 	\end{tcolorbox}
-	The goal is to maximize the total reward over the T rounds. Above that, we make two important assumptions:
+	The goal is to maximize the total reward over the $\mathtt{H}$ rounds. Above that, we make two important assumptions:
 	\begin{itemize}
 		\item The algorithm observes only the reward for the selected action, and nothing else.
 		\item The reward for each action is  i.i.d. For each lever $\ell^i$, there is a distribution $F_{i}$ over reals, called the reward distribution. Every time the lever is chosen, the reward is sampled independently from its distribution. The reward distributions are initially unknown to the algorithm.
 	\end{itemize}
 	For better understanding of the model, let us begin with an example. Imagine player walking into a casino with two slot-machines. Both slot-machines $\ell_1,\ell_2$ have their already given distributions $F_1, F_2$. Let the reward $r$ of each slot-machine be given as $r_1\sim F_1=\mathcal{N}(10,3)$ and $r_2\sim F_2=\mathcal{N}(8,4)$. Unfortunately, this information is hidden from the player. What possible strategies can the player use in order to maximize his win over $\mathtt{H}=100$ rounds? The mean optimal win is $$r_O =\mathtt{H}\cdot \mu^* = \mathtt{H}\cdot \max\{\mu_1,\mu_2\} = 100\cdot10=1~000.$$
 	
-	a) \textit{Explore only}: Firstly, he could choose to pull the levers randomly for the whole 100 rounds. In that case, his mean reward after 100 games would be $$r = 50\cdot 10 + 50\cdot 8 = 900,$$ meaning expected regret  is equal to $\mathbb{E}[\rho] = 1~000-900=100$.\\
+	a) \textit{Explore only}: Firstly, he could choose to pull the levers randomly for the all 100 rounds. In that case, his mean reward after 100 games would be $$r = 50\cdot 10 + 50\cdot 8 = 900,$$ meaning expected regret  is equal to $\mathbb{E}[\rho] = 1~000-900=100$.\\
 	
 	b) \textit{Exploit only}: Second strategy could be based on first experience. One round on each slot-machine could be played and explored. In first round, player pulls lever $\ell_A$ and gets a reward of $9$. Then, pulling the second lever $\ell_B$ and winning $11 $. Naturally, for the remaining 98 rounds reasonable player would decide to keep playing (exploit) with the "better" lever $\ell_B$. This strategy might have two possible outcomes
 	\begin{itemize}
@@ -93,44 +93,44 @@
 	\end{tcolorbox}
 	The advantage of this method is without a doubt extended exploration part, which provides more clues about the hidden distributions $F_{i}$ of each lever. On the other hand, since we know so little about the distributions of each lever, we can not with certainty determine the optimal range of exploration part. Setting the value of $\varepsilon$ so we do not perform unnecessary exploration rounds on the expenses of exploitation rounds and the other way around is a difficult task to do and strongly depends on the distributions.
 	\subsection*{$\varepsilon$-greedy strategy}
-	Another way to upgrade exploration/exploitation strategy is to use $\varepsilon\in(0,1)$ as a threshold for re-decision. In $\varepsilon$-greedy strategy we continuously monitor our decision during the whole game. Firstly, lever is randomly chosen to be played for the first $\varepsilon\mathtt{H}$ rounds. In $(\varepsilon\mathtt{H}+1)$ round the other lever is played. At this point, re-decision is made. If the reward obtained from other lever is lower than mean reward obtained during $\varepsilon\mathtt{H}$ rounds, player continues to play with the same lever as in the $\varepsilon\mathtt{H}$ rounds. In the opposite case, player randomly choose which lever is to be played in the following $\varepsilon\mathtt{H}$ rounds.
+	Another way to upgrade exploration/exploitation strategy is to choose the lever every round, but with probability (1-$\varepsilon$) choose a more benefitial lever. 
 	\begin{tcolorbox}[colframe=white]
 		In $\varepsilon$-greedy strategy is
 		\begin{enumerate}
-			\item randomly selected one of the levers,
-			\item exploited for $\varepsilon\mathtt{H}$ rounds and calculated mean reward $\tilde{r}$ after $\varepsilon\mathtt{H}$ rounds,
-			\item in $(\varepsilon\mathtt{H}+1)$ round explored the second lever, obtaining levers reward $r$,
+			\item in the first round randomly selected one of the levers,
+			\item in every round $t$:
 			\begin{itemize}
-				\item if $\tilde{r}\geq r\to$ keep same lever as in exploitation $\to$ 2.,
-				\item if $\tilde{r}< r\to$ randomly select new lever $\to$ 2. with new chosen lever,
+				\item with a probability of (1-$\varepsilon$) pull a lever with the highest mean reward after T rounds played,
+				\item with a probability of $\varepsilon$ pull a random lever.
 			\end{itemize}
-			\item the game ends after $\mathtt{H}$ rounds are played.
 		\end{enumerate}
 	\end{tcolorbox}  
-	The contribution of this method to the improvement of previous startegies lies in periodic update of our decision after $\varepsilon\mathtt{H}$ rounds. But again, in disadvantage, the series of playing the more benefitial lever could be accidentaly interrupted by sporadic good win of the other lever in exploring round.
+	The contribution of this method to the improvement of previous startegies lies in periodic update of our decision each round. 
+	
 	\subsection*{$\varepsilon$-decay strategy}
-	$\varepsilon$-decay (also known as $\varepsilon$-decreasing) strategy is a strategy, where the $\varepsilon\in(0,1)$ is not fixed, but it is a decreasing series of $(\varepsilon_i)_{i=1}^m$, where $\varepsilon_1>\varepsilon_2>\dots>\varepsilon_m$. In the $\varepsilon$-decay strategy, the random lever is pulled with a probability of $\frac{1}{1+\beta t}$, where $t$ is the number of rounds played, otherwise lever with highest mean reward is pulled.
+	$\varepsilon$-decay (also known as $\varepsilon$-decreasing) strategy is a strategy, where the $\varepsilon\in(0,1)$ is not fixed, but it is a decreasing series of $(\varepsilon_i)_{i=1}^H$, where $\varepsilon_1>\varepsilon_2>\dots>\varepsilon_H$. In the $\varepsilon$-decay strategy, the random lever is pulled with a probability of $\frac{1}{1+\beta t}$, where $t$ is the number of rounds played, otherwise lever with highest mean reward is pulled. Otherwise, the procedure is pretty similar as greedy strategy.
 	\begin{tcolorbox}[colframe=white]
 		$\varepsilon$-decay strategy
 		\begin{enumerate}
-			\item randomly selected one of the levers,
-			\item exploit for $\varepsilon_i\mathtt{H}$ rounds and calculated mean reward $\tilde{r}$ after $\varepsilon_i\mathtt{H}$ rounds,
-			\item in $(\varepsilon_i\mathtt{H}+1)$ round is selected random lever with probability of $\frac{1}{1+\beta t}$, otherwise lever with the highest mean reward is pulled,
-			\item set $\varepsilon_i$ as new $\varepsilon_{i+1}$ ($\varepsilon_i>\varepsilon_{i+1}$) and return to point 2.,
-			\item the game ends after $\mathtt{H}$ rounds are played.
+			\item at the beginning randomly selected one of the levers,
+			\item in every following round t:
+			\begin{itemize}
+				\item with a probability of (1-$\varepsilon_t$) pull a lever with the highest meant reward after T rouds played,
+				\item with a probability of $\varepsilon_t$ pull a random lever,
+				\item update $t\to t+1$ and $\varepsilon_t\to\varepsilon_{t+1}$.
+			\end{itemize}
 		\end{enumerate}
 	\end{tcolorbox}
-	This method could be again upgraded by using more specific probability distribution for pulling the lever. Exaple of such method is SoftMax strategy: 
+	This method could be again upgraded by using more specific probability distribution for the lever selection. Exaple of such method is SoftMax strategy: 
+	
 	\subsection*{SoftMax strategy}
 	The SoftMax strategy consists of a random choice according to a Gibbs distribution. The lever $k$ is chosen with probability 
 	$$p_k =\frac{\e^{\frac{\hat{\mu}_k}{\tau}}}{\sum_{i=1}^{n}\e^{\frac{\hat{\mu}_i}{\tau}}},$$
 	where $\hat{\mu}_i$ is the estimated mean of the rewards brought by the lever $i$ and $\tau\in\R^+$ is a parameter called the temperature. The choice of $\tau$’s value is left to the user. More generally, all methods that choose levers according to a probability distribution reflecting how likely the levers are to be optimal, are called probability matching methods.
-	\subsubsection*{SoftMax strategy using FSA}
-	As an upgrade for SoftMax strategy could help Fast Simulated Annealing, where the temperature $\tau$ is not set as a constant, but as a function defined as $$\tau(t) = \frac{T_0}{1+(\frac{t}{n_0})^\alpha},$$ where $T_0$ is an initial temperature and $\alpha, n_0$ are cooling parameters.	
-	
 
+	
+\newpage
 \section*{Results based on heuristics}
-Before the results, lets focus on the theory (based on the lectures [5]).
 
 	\subsection*{Grid Search}
 	The Grid Search has been the traditional way of hyperparameter optimization. It is a very simple exhaustive searching through a manually specified subset of the hyperparameter space of a learning algorithm. A grid search algorithm must be guided by some performance metric. In this research, our metric will be the mean reward after $1~000$ games. 
@@ -147,36 +147,81 @@ In this text, the goal is to determine the best multi armed bandit strategy amon
 		\subitem $\cdots$,
 		\subitem $r_9\sim N(9,1)$.
 \end{itemize}
-This game will be repeated $1~000$ times and the average final reward over these thousand games will be observed. As the distributions are now revealed, it is clear we except the algorithms will eventually discover the last lever with $r_9$ is the most generous one.
+This game will be repeated $1~000$ times and the average final reward over these thousand games will be tracked. Since the distributions are now revealed, it is clear that the algorithms will eventually find that the last lever with $r_9$ is the most generous.
 
 \subsubsection*{The best $\varepsilon$-first strategy}
-Based on the definition, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = $ the best option with the respect to the setting of the game and experiment.
+Based on the definition, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ In the following graph the final mean reward (after $1~000$ games) is presented. Based on the results in Figure \ref{fig::e_first}, we declare $\varepsilon = 0.03 $ the best option with the respect to the setting of the game and experiment.
 
 \begin{figure}[h]
-	\includegraphics[scale=0.6]{e_fisrt.png}
+	\centering
+	\includegraphics[scale=0.55]{e_fisrt.png}
+	\caption{The performance of different $\varepsilon$-first strategies.}\label{fig::e_first}
 \end{figure}
 
 \subsubsection*{The best $\varepsilon$-greedy strategy}
-Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes and now it defines a points in the game, where the decision might be switched. In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = 0.09$ the best option with the respect to the setting of the game and experiment.
-
-\subsubsection*{The best $\varepsilon$-decay strategy}
-Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes and now it defines a points in the game, where the decision might be switched. In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = 0.09$ the best option with the respect to the setting of the game and experiment.
-
-\subsubsection*{The best SoftMax strategy}
-Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes and now it defines a points in the game, where the decision might be switched. In the following graph the final mean reward (after $1~000$ games is presented). Based on the results, we declare $\varepsilon = 0.09$ the best option with the respect to the setting of the game and experiment.
-
-\subsection*{GA}
-Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on biologically inspired operators such as mutation, crossover and selection. In the following picture, which I stole from our lectures [7.], is described the idea behind GA:
+Similarly as in previous method, we are exploring the possible values of $\varepsilon=0.00, 0.01, 0.02,\dots, 1.00.$ However the role of $\varepsilon$ slightly changes. In the following Figure \ref{fig::e_greedy} the final mean reward (after $1~000$ games) is presented. Based on the results, we declare $\varepsilon = 0.07$ the best option with the respect to the setting of the game and experiment.
 
 \begin{figure}[h]
-\includegraphics[scale=0.45]{go_overview.png}
-\caption{The genetic optimization.}
+	\centering
+	\includegraphics[scale=0.55]{e_greedy.png}
+	\caption{The performance of different $\varepsilon$-greedy strategies.}\label{fig::e_greedy}
 \end{figure}
 
-As Grid Search was just fine for the $\varepsilon$-based strategies, the SoftMax strategy offers an opportunity to test Genetic Algorithms. The geneticalgorithm library offers an implementation of GA, the documentation can be found here: https://github.com/rmsolgi/geneticalgorithm .
+\subsubsection*{The best $\varepsilon$-decay strategy}
+More neck-to-neck situation can be observed in the $\varepsilon$-decay strategy. Based in the results visible in the Figure \ref{fig::e_decay} we declare $\beta = 0.12$ the best option with the respect to the setting of the game and experiment.
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.55]{e_decay.png}
+	\caption{The performance of different $\varepsilon$-decay strategies.}\label{fig::e_decay}
+\end{figure}
 
+\newpage
+\subsubsection*{The best SoftMax strategy}
+In the SoftMax strategy the parameter called Temperature is being optimized. Firstly, Grid Search is used similarly as in previous cases. Based on this approach, the best value for temperature is $T=1.2$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{SM.png}
+	\caption{The performance of the temperature parameter setting for SoftMax strategy.}\label{fig::SM}
+\end{figure}
 
+Additionally, a different approach, the genetic algorithms, was tried. The genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on biologically inspired operators such as mutation, crossover and selection. In the Figure \ref{fig::ga} (which was stolen from our lectures [7.]), is described the idea behind GA:
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.5]{go_overview.png}
+	\caption{The genetic optimization.}\label{fig::ga}
+\end{figure}
+
+ The geneticalgorithm library offers an implementation of GA, the documentation can be found here: https://github.com/rmsolgi/geneticalgorithm. Following parameters are set:
+ \begin{itemize}
+ 	\item objective function: (-1)*[the mean reward after 1000 rounds]
+ 	\item variable\_boundaries: [0.5, 1.5]
+ 	\item population\_size: 100
+ 	\item mutation\_probability: 0.1
+ 	\item elit\_ratio: 0.01
+ 	\item crossover\_probability: 0.5
+ 	\item parents\_portion: 0.3
+ 	\item crossover\_type': 'uniform'
+ \end{itemize}
+
+The results can be seen in the Figure \ref{fig::gaO}. Based on GA, best option is $T=1.67$. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.6]{ga1.png}
+	\caption{The convergence of GA parameter search.}\label{fig::gaO}
+\end{figure}
+
+\subsection*{Summary}
+
+For each strategy, the best possible setting of parameters was tested. In the last Figure \ref{fig::all} is the final comparison between the winning strategies. The best strategy (with respect to the setting of the experiment) is the $0.03$- first strategy with the final mean reward equal to $8.7923$.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.55]{summary.png}
+	\caption{The final comparison of strategies.}\label{fig::all}
+\end{figure}
 
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.23)  29 AUG 2022 23:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.23)  6 SEP 2022 21:16
 entering extended mode
 **./HEUR2022_Lhotakova.tex
 (HEUR2022_Lhotakova.tex
@@ -789,17 +789,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--78
  []
 
 [2] [3] [4]
-<e_fisrt.png, id=71, 722.7pt x 289.08pt>
+<e_fisrt.png, id=66, 606.265pt x 294.09875pt>
 File: e_fisrt.png Graphic file (type png)
 <use e_fisrt.png>
-Package pdftex.def Info: e_fisrt.png  used on input line 156.
-(pdftex.def)             Requested size: 433.62334pt x 173.44933pt.
+Package pdftex.def Info: e_fisrt.png  used on input line 157.
+(pdftex.def)             Requested size: 333.44678pt x 161.7548pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (26.6884pt too wide) in paragraph at lines 161--162
+Overfull \hbox (26.6884pt too wide) in paragraph at lines 162--163
 []\T1/cmr/m/n/10.95 Similarly as in pre-vi-ous method, we are ex-plor-ing the p
 os-si-ble val-ues of $\OML/cmm/m/it/10.95 " \OT1/cmr/m/n/10.95 = 0\OML/cmm/m/it
 /10.95 :\OT1/cmr/m/n/10.95 00\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm
@@ -808,52 +804,64 @@ L/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 02\OML/cmm/m/it/10.95 ; [] ; \OT1/cmr/m/n/
 10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 00\OML/cmm/m/it/10.95 :$
  []
 
-
-Overfull \hbox (26.6884pt too wide) in paragraph at lines 164--165
-[]\T1/cmr/m/n/10.95 Similarly as in pre-vi-ous method, we are ex-plor-ing the p
-os-si-ble val-ues of $\OML/cmm/m/it/10.95 " \OT1/cmr/m/n/10.95 = 0\OML/cmm/m/it
-/10.95 :\OT1/cmr/m/n/10.95 00\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm
-/m/it/10.95 :\OT1/cmr/m/n/10.95 01\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OM
-L/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 02\OML/cmm/m/it/10.95 ; [] ; \OT1/cmr/m/n/
-10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 00\OML/cmm/m/it/10.95 :$
- []
-
-
-Overfull \hbox (26.6884pt too wide) in paragraph at lines 167--168
-[]\T1/cmr/m/n/10.95 Similarly as in pre-vi-ous method, we are ex-plor-ing the p
-os-si-ble val-ues of $\OML/cmm/m/it/10.95 " \OT1/cmr/m/n/10.95 = 0\OML/cmm/m/it
-/10.95 :\OT1/cmr/m/n/10.95 00\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm
-/m/it/10.95 :\OT1/cmr/m/n/10.95 01\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OM
-L/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 02\OML/cmm/m/it/10.95 ; [] ; \OT1/cmr/m/n/
-10.95 1\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.95 00\OML/cmm/m/it/10.95 :$
- []
-
-[5]
-<go_overview.png, id=83, 914.81775pt x 314.97675pt>
+[5 <./e_fisrt.png>]
+<e_greedy.png, id=79, 616.3025pt x 294.09875pt>
+File: e_greedy.png Graphic file (type png)
+<use e_greedy.png>
+Package pdftex.def Info: e_greedy.png  used on input line 166.
+(pdftex.def)             Requested size: 338.96742pt x 161.7548pt.
+<e_decay.png, id=81, 606.265pt x 298.11375pt>
+File: e_decay.png Graphic file (type png)
+<use e_decay.png>
+Package pdftex.def Info: e_decay.png  used on input line 175.
+(pdftex.def)             Requested size: 333.44678pt x 163.96306pt.
+ [6 <./e_greedy.png> <./e_decay.png>]
+<SM.png, id=92, 611.28375pt x 276.03125pt>
+File: SM.png Graphic file (type png)
+<use SM.png>
+Package pdftex.def Info: SM.png  used on input line 184.
+(pdftex.def)             Requested size: 366.77307pt x 165.62001pt.
+<go_overview.png, id=94, 914.81775pt x 314.97675pt>
 File: go_overview.png Graphic file (type png)
 <use go_overview.png>
-Package pdftex.def Info: go_overview.png  used on input line 173.
-(pdftex.def)             Requested size: 411.66418pt x 141.73822pt.
- [6 <./e_fisrt.png> <./go_overview.png (PNG copy)>]
-Overfull \hbox (26.59041pt too wide) in paragraph at lines 187--188
+Package pdftex.def Info: go_overview.png  used on input line 192.
+(pdftex.def)             Requested size: 457.40776pt x 157.48798pt.
+
+Overfull \hbox (2.16365pt too wide) in paragraph at lines 192--193
+ [][] 
+ []
+
+[7 <./SM.png> <./go_overview.png (PNG copy)>]
+<ga1.png, id=105, 408.52625pt x 279.0425pt>
+File: ga1.png Graphic file (type png)
+<use ga1.png>
+Package pdftex.def Info: ga1.png  used on input line 212.
+(pdftex.def)             Requested size: 245.11765pt x 167.42679pt.
+<summary.png, id=107, 601.24625pt x 388.45125pt>
+File: summary.png Graphic file (type png)
+<use summary.png>
+Package pdftex.def Info: summary.png  used on input line 222.
+(pdftex.def)             Requested size: 330.68645pt x 213.64883pt.
+ [8 <./ga1.png> <./summary.png>]
+Overfull \hbox (26.59041pt too wide) in paragraph at lines 231--232
 []\T1/cmr/bx/n/10.95 Ritvik Kharkar\T1/cmr/m/n/10.95 , A.A. [ritvikmath], Multi
 -Armed Ban-dit: Data Sci-ence Con-cepts (2020/09/23),
  []
 
-[7
+[9
 
 ] (HEUR2022_Lhotakova.aux)
 Package rerunfilecheck Info: File `HEUR2022_Lhotakova.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 18380 strings out of 480257
- 346881 string characters out of 2880021
- 628832 words of memory out of 3000000
- 34501 multiletter control sequences out of 15000+200000
+ 18418 strings out of 480257
+ 347444 string characters out of 2880021
+ 629380 words of memory out of 3000000
+ 34533 multiletter control sequences out of 15000+200000
  560052 words of font info for 105 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 95i,7n,99p,776b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 95i,8n,99p,764b,465s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\e
 cbx1200.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
 /dpi600\ecbx1095.pk> <C:\Users\uzivatel\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
@@ -883,9 +891,9 @@ ivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmtt8.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on HEUR2022_Lhotakova.pdf (7 pages, 349566 bytes).
+Output written on HEUR2022_Lhotakova.pdf (9 pages, 414941 bytes).
 PDF statistics:
- 440 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 467 PDF objects out of 1000 (max. 8388607)
+ 43 named destinations out of 1000 (max. 500000)
+ 48 words of extra memory for PDF output out of 10000 (max. 10000000)
 
