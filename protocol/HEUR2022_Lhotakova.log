@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.23)  6 SEP 2022 21:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.23)  7 SEP 2022 13:29
 entering extended mode
 **./HEUR2022_Lhotakova.tex
 (HEUR2022_Lhotakova.tex
@@ -832,11 +832,11 @@ Overfull \hbox (2.16365pt too wide) in paragraph at lines 192--193
  []
 
 [7 <./SM.png> <./go_overview.png (PNG copy)>]
-<ga1.png, id=105, 408.52625pt x 279.0425pt>
+<ga1.png, id=105, 401.5pt x 279.0425pt>
 File: ga1.png Graphic file (type png)
 <use ga1.png>
 Package pdftex.def Info: ga1.png  used on input line 212.
-(pdftex.def)             Requested size: 245.11765pt x 167.42679pt.
+(pdftex.def)             Requested size: 240.90184pt x 167.42679pt.
 <summary.png, id=107, 601.24625pt x 388.45125pt>
 File: summary.png Graphic file (type png)
 <use summary.png>
@@ -891,7 +891,7 @@ ivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
 <C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
 /cmtt8.pfb><C:/Users/uzivatel/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/symbols/msbm10.pfb>
-Output written on HEUR2022_Lhotakova.pdf (9 pages, 414941 bytes).
+Output written on HEUR2022_Lhotakova.pdf (9 pages, 414274 bytes).
 PDF statistics:
  467 PDF objects out of 1000 (max. 8388607)
  43 named destinations out of 1000 (max. 500000)
